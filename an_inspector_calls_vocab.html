@@ -1022,14 +1022,30 @@ var WORDS = [
   }
 
   function renderList(){
-    var head = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap"><span style="font-size:13px;color:#8b95a3">단어를 탭하면 한국어 뜻이 보여요 ('+WORDS.length+'개)</span><button data-action="listAll" data-arg="'+(listAllOn?"hide":"show")+'" style="'+pbtn("transparent",C.paperOnDark,"#384556")+'">'+(listAllOn?"모두 숨기기":"모두 보기")+'</button></div>';
+    var c1=WORDS.filter(function(w){return w.act===1;}).length;
+    var c2=WORDS.filter(function(w){return w.act===2;}).length;
+    var c3=WORDS.filter(function(w){return w.act===3;}).length;
+    var head = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap"><span style="font-size:13px;color:#8b95a3">영어(EN)·한국어(뜻)를 따로 켜고 끌 수 있어요 · 1막 '+c1+' / 2막 '+c2+' / 3막 '+c3+' = 총 '+WORDS.length+'개</span><button data-action="listAll" data-arg="'+(listAllOn?"hide":"show")+'" style="'+pbtn("transparent",C.paperOnDark,"#384556")+'">'+(listAllOn?"모두 숨기기":"모두 보기")+'</button></div>';
     var cards = [1,2,3].map(function(act){
       var list = WORDS.filter(function(w){ return w.act===act; });
       var accent = act===1?C.gold:act===2?C.clay:"#6f7f8e";
       var rows = list.map(function(w){
-        var open = !!listRevealed[w.id];
-        var right = open ? '<span style="font-size:15px;color:'+C.ink+';font-weight:500">'+esc(w.ko)+'</span>' : '<span style="font-size:13px;color:'+C.inkSoft+';background:'+C.paperEdge+';padding:3px 12px;border-radius:999px;white-space:nowrap">뜻 보기</span>';
-        return '<button data-action="listToggle" data-arg="'+w.id+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:10px;padding:11px 2px;border:none;border-bottom:1px solid '+C.paperEdge+';background:transparent;cursor:pointer;font-family:'+SANS+'"><span title="'+stage4(progress[w.id]).label+'" style="width:8px;height:8px;border-radius:999px;flex:0 0 auto;background:'+stage4(progress[w.id]).color+'"></span><span style="min-width:0"><span style="font-family:'+SERIF+';font-size:17px;color:'+C.ink+';font-weight:600">'+esc(w.word)+'</span><span style="font-style:italic;font-size:12px;color:'+C.inkSoft+';margin-left:6px">'+esc(w.pos)+'</span></span><span style="margin-left:auto;text-align:right;flex:0 1 auto;padding-left:8px">'+right+'</span></button>';
+        var rv = listRevealed[w.id]||{}, enOpen=!!rv.en, koOpen=!!rv.ko;
+        var st = stage4(progress[w.id]);
+        var spk = speechOK ? '<button data-action="speak" data-arg="'+esc(w.word)+'" title="발음 듣기 (영국식)" aria-label="발음 듣기" style="flex:0 0 auto;width:30px;height:30px;border-radius:999px;border:1px solid '+C.line+';background:#fff;color:'+C.ink+';cursor:pointer;display:grid;place-items:center;font-size:14px;line-height:1;padding:0">\uD83D\uDD0A</button>' : '';
+        var pillEn = '<span data-action="listEn" data-arg="'+w.id+'" style="cursor:pointer;font-size:12px;font-weight:700;padding:3px 11px;border-radius:999px;white-space:nowrap;'+(enOpen?'background:'+C.clay+';color:#fff':'background:'+C.paperEdge+';color:'+C.inkSoft)+'">EN</span>';
+        var pillKo = '<span data-action="listKo" data-arg="'+w.id+'" style="cursor:pointer;font-size:12px;font-weight:700;padding:3px 11px;border-radius:999px;white-space:nowrap;'+(koOpen?'background:'+C.teal+';color:#fff':'background:'+C.paperEdge+';color:'+C.inkSoft)+'">뜻</span>';
+        var rowInner = '<div style="display:flex;align-items:center;gap:8px;padding:11px 2px;font-family:'+SANS+'">'
+          + '<span title="'+st.label+'" style="width:8px;height:8px;border-radius:999px;flex:0 0 auto;background:'+st.color+'"></span>'
+          + spk
+          + '<span style="min-width:0"><span style="font-family:'+SERIF+';font-size:17px;color:'+C.ink+';font-weight:600">'+esc(w.word)+'</span><span style="font-style:italic;font-size:12px;color:'+C.inkSoft+';margin-left:6px">'+esc(w.pos)+'</span></span>'
+          + '<span style="margin-left:auto;flex:0 0 auto;display:flex;gap:6px;padding-left:8px">'+pillEn+pillKo+'</span>'
+          + '</div>';
+        var blocks = '';
+        if (enOpen) blocks += '<div style="display:flex;gap:8px;'+(koOpen?'margin-bottom:6px':'')+'"><span style="flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:1px;color:'+C.clay+';margin-top:3px">EN</span><span style="font-size:14px;color:'+C.inkSoft+';line-height:1.5">'+esc(w.en)+'</span></div>';
+        if (koOpen) blocks += '<div style="display:flex;gap:8px"><span style="flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:1px;color:'+C.teal+';margin-top:3px">뜻</span><span style="font-size:15px;color:'+C.ink+';font-weight:600;line-height:1.5">'+esc(w.ko)+'</span></div>';
+        var meanings = blocks ? '<div style="padding:0 2px 12px 28px">'+blocks+'</div>' : '';
+        return '<div style="border-bottom:1px solid '+C.paperEdge+'">'+rowInner+meanings+'</div>';
       }).join("");
       return card('<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px"><span style="font-family:'+SERIF+';font-size:18px;color:'+C.ink+';font-weight:700">Act '+act+'</span><span style="height:3px;width:28px;border-radius:2px;background:'+accent+'"></span><span style="margin-left:auto;font-size:12px;color:'+C.inkSoft+'">'+list.length+'개</span></div>'+rows, "margin-bottom:12px;padding:16px 16px 6px");
     }).join("");
@@ -1180,8 +1196,9 @@ var WORDS = [
     else if (a==="reveal"){ study.step=parseInt(arg,10); render(); }
     else if (a==="rate"){ rate(arg); }
     else if (a==="nav"){ var ws=studyWords(); if (arg==="prev") study.idx=Math.max(0,study.idx-1); else study.idx=Math.min(ws.length-1,study.idx+1); study.step=0; render(); }
-    else if (a==="listToggle"){ listRevealed[arg]=!listRevealed[arg]; render(); }
-    else if (a==="listAll"){ if (arg==="show"){ WORDS.forEach(function(w){ listRevealed[w.id]=true; }); listAllOn=true; } else { listRevealed={}; listAllOn=false; } render(); }
+    else if (a==="listEn"){ var oe=listRevealed[arg]||{}; oe.en=!oe.en; listRevealed[arg]=oe; render(); }
+    else if (a==="listKo"){ var ok=listRevealed[arg]||{}; ok.ko=!ok.ko; listRevealed[arg]=ok; render(); }
+    else if (a==="listAll"){ if (arg==="show"){ WORDS.forEach(function(w){ listRevealed[w.id]={en:true,ko:true}; }); listAllOn=true; } else { listRevealed={}; listAllOn=false; } render(); }
     else if (a==="quizStart"){ startQuiz(arg); }
     else if (a==="mc"){ answerMc(parseInt(arg,10)); }
     else if (a==="submit"){ submitFill(); }
