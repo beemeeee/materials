@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>An Inspector Calls — 단어 학습</title>
+<style>
+  * { box-sizing: border-box; }
+  html { background-color: #1b232f; }
+  html, body { margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: #cdd4dd;
+    background-color: #1b232f;
+    background-image: radial-gradient(120% 120% at 50% -10%, #222d3c 0%, #1b232f 60%);
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+    -webkit-text-size-adjust: 100%;
+  }
+  button { font-family: inherit; }
+  kbd { font-family: inherit; }
+  input:focus { border-color: #3f8a8f !important; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var WORDS = [
+  // ===================== ACT ONE =====================
+  { id: 1, word: "substantial", pos: "adj.", act: 1,
+    ex: ["The hikers ate a *substantial* breakfast so they wouldn't get hungry on the long trail.",
+         "She was given a *substantial* sum of money, enough to buy a car and still have plenty left."],
+    en: "large in amount, size, or value", ko: "상당한, 많은; 튼튼한" },
+  { id: 2, word: "comfortable", pos: "adj.", act: 1,
+    ex: ["The big armchair was so *comfortable* that he fell asleep in minutes.",
+         "Wear *comfortable* shoes if you plan to walk all day."],
+    en: "giving a pleasant, relaxed feeling; not causing pain", ko: "편안한, 안락한" },
+  { id: 3, word: "prosperous", pos: "adj.", act: 1,
+    ex: ["The *prosperous* business owner lived in a huge house and drove an expensive car.",
+         "During those *prosperous* years, almost everyone in town had a good job and money to spare."],
+    en: "successful and wealthy", ko: "번영하는, 부유한" },
+  { id: 4, word: "manufacturer", pos: "n.", act: 1,
+    ex: ["The car *manufacturer* built thousands of vehicles in its huge factory each year.",
+         "As a furniture *manufacturer*, he owned three workshops full of machines and workers."],
+    en: "a person or company that makes goods in a factory", ko: "제조업자, 제조사" },
+  { id: 5, word: "portentous", pos: "adj.", act: 1,
+    ex: ["He had a *portentous* way of speaking, as if every single word he said was tremendously important.",
+         "She gave a slow, *portentous* nod that made a simple choice seem far more serious than it was."],
+    en: "trying to seem very serious or important, often too much so", ko: "거드름 피우는, 젠체하는" },
+  { id: 6, word: "provincial", pos: "adj.", act: 1,
+    ex: ["Visitors from the capital sometimes laughed at his *provincial* accent and old-fashioned manners.",
+         "Having lived in one small town all her life, her tastes seemed rather *provincial* to her city friends."],
+    en: "from a place far from the big city; narrow or unsophisticated", ko: "지방의; 촌스러운, 편협한" },
+  { id: 7, word: "well-bred", pos: "adj.", act: 1,
+    ex: ["The *well-bred* young man held the door open and spoke politely to everyone he met.",
+         "She came from a *well-bred* family and had been taught perfect manners since childhood."],
+    en: "having good manners from a high-class upbringing", ko: "가정교육을 잘 받은, 점잖은" },
+  { id: 8, word: "assertive", pos: "adj.", act: 1,
+    ex: ["Be *assertive* in the meeting: say clearly what you want instead of staying silent.",
+         "She was quiet at first, then became *assertive* and firmly stated her opinion."],
+    en: "confident and forceful in saying what you want", ko: "적극적인, 자기주장이 강한" },
+  { id: 9, word: "uneasy", pos: "adj.", act: 1,
+    ex: ["He felt *uneasy* walking down the dark, empty street.",
+         "Something about her answer made me *uneasy*."],
+    en: "worried and uncomfortable", ko: "불안한, 거북한" },
+  { id: 10, word: "parlourmaid", pos: "n.", act: 1,
+    ex: ["In the grand old house, the *parlourmaid* served tea and cleared the dinner plates.",
+         "The family rang a little bell and the *parlourmaid* came to wait on them."],
+    en: "a female servant who waited on a family in a grand house (old word)", ko: "(옛날) 응접실 하녀" },
+  { id: 11, word: "decanter", pos: "n.", act: 1,
+    ex: ["He poured the red wine from a beautiful glass *decanter* into each guest's glass.",
+         "A crystal *decanter* of port stood in the middle of the dinner table."],
+    en: "a fancy glass bottle for serving wine or port", ko: "디캔터 (술을 담는 유리병)" },
+  { id: 12, word: "cigar", pos: "n.", act: 1,
+    ex: ["After dinner, the old man lit a fat *cigar* and blew out the smoke.",
+         "The room smelled of *cigar* smoke for hours afterwards."],
+    en: "a thick roll of tobacco leaves for smoking", ko: "시가, 엽궐련" },
+  { id: 13, word: "champagne", pos: "n.", act: 1,
+    ex: ["They opened a bottle of *champagne* to celebrate the wedding.",
+         "The cork flew off the *champagne* with a loud pop."],
+    en: "a bubbly white wine drunk on special occasions", ko: "샴페인" },
+  { id: 14, word: "toast", pos: "n.", act: 1,
+    ex: ["He raised his glass and made a *toast* to the happy couple.",
+         "Everyone joined the *toast*, wishing the bride good luck."],
+    en: "the act of raising glasses to wish someone well", ko: "건배, 축배" },
+  { id: 15, word: "celebrate", pos: "v.", act: 1,
+    ex: ["We *celebrate* her birthday with a cake and games every year.",
+         "They went out to *celebrate* the team's big win."],
+    en: "to do something enjoyable for a special or happy occasion", ko: "축하하다, 기념하다" },
+  { id: 16, word: "engagement", pos: "n.", act: 1,
+    ex: ["They announced their *engagement* and began planning the wedding.",
+         "An *engagement* ring usually has a sparkling stone."],
+    en: "an agreement or promise to marry someone", ko: "약혼" },
+  { id: 17, word: "engaged", pos: "adj.", act: 1,
+    ex: ["After he proposed, they were *engaged* and began planning the wedding.",
+         "She wore a ring to show that she was *engaged* to be married."],
+    en: "having promised to marry someone", ko: "약혼한" },
+  { id: 18, word: "fiancée", pos: "n.", act: 1,
+    ex: ["He introduced his *fiancée*, the woman he was going to marry next spring.",
+         "The ring sparkled on his *fiancée*'s finger as she smiled."],
+    en: "a woman who is engaged to be married", ko: "약혼녀" },
+  { id: 19, word: "marriage", pos: "n.", act: 1,
+    ex: ["Their *marriage* lasted for fifty happy years.",
+         "She wore a white dress for the *marriage* ceremony."],
+    en: "the state of being husband and wife; a wedding", ko: "결혼, 혼인" },
+  { id: 20, word: "proud", pos: "adj.", act: 1,
+    ex: ["She felt *proud* when she won first prize.",
+         "His parents were *proud* of how hard he had worked."],
+    en: "feeling pleased about something good you have or have done", ko: "자랑스러운, 자랑스러워하는" },
+  { id: 21, word: "amused", pos: "adj.", act: 1,
+    ex: ["He was *amused* by the kitten chasing its own tail.",
+         "She gave an *amused* smile at the silly joke."],
+    en: "finding something funny or entertaining", ko: "재미있어하는, 즐거워하는" },
+  { id: 22, word: "heartily", pos: "adv.", act: 1,
+    ex: ["He laughed *heartily* at the joke, his whole body shaking.",
+         "They *heartily* agreed with the plan and shook hands with big smiles."],
+    en: "in a strong, cheerful, enthusiastic way", ko: "진심으로, 열렬히" },
+  { id: 23, word: "well-behaved", pos: "adj.", act: 1,
+    ex: ["The *well-behaved* children sat quietly and said please and thank you.",
+         "Their dog was so *well-behaved* that it never barked at guests."],
+    en: "acting politely and properly", ko: "예의 바른, 얌전한" },
+  { id: 24, word: "chap", pos: "n.", act: 1,
+    ex: ["He seems like a friendly *chap*, always ready to lend a hand.",
+         "A young *chap* in a brown coat asked me for directions."],
+    en: "a man or boy (informal British)", ko: "(영국 구어) 녀석, 친구" },
+  { id: 25, word: "remark", pos: "n.", act: 1,
+    ex: ["She made a kind *remark* about his new haircut.",
+         "His rude *remark* upset everyone at the table."],
+    en: "something you say; a short comment", ko: "말, 발언, 언급" },
+  { id: 26, word: "interrupt", pos: "v.", act: 1,
+    ex: ["Please don't *interrupt* while I am speaking.",
+         "The phone rang and *interrupted* our dinner."],
+    en: "to stop someone or something while it is happening", ko: "끼어들다, 방해하다" },
+  { id: 27, word: "gather", pos: "v.", act: 1,
+    ex: ["From the dark clouds, I *gather* it is going to rain soon.",
+         "I *gather* you've already heard the news, judging by your face."],
+    en: "to understand or conclude something from what you see or hear", ko: "(정보로) 짐작하다, 알다" },
+  { id: 28, word: "amalgamate", pos: "v.", act: 1,
+    ex: ["The two small banks decided to *amalgamate* into one larger company.",
+         "When the clubs *amalgamated*, all the members joined a single team."],
+    en: "to join two companies or groups into one", ko: "합병하다, 합치다" },
+  { id: 29, word: "business", pos: "n.", act: 1,
+    ex: ["She runs a small *business* selling homemade cakes.",
+         "Mind your own *business* and stop asking questions."],
+    en: "the work of buying and selling; a company, or one's own affairs", ko: "사업, 장사; 일, 용무" },
+  { id: 30, word: "owner", pos: "n.", act: 1,
+    ex: ["The *owner* of the dog called it back with a whistle.",
+         "As the shop *owner*, she decided what to sell."],
+    en: "a person who owns something", ko: "주인, 소유주" },
+  { id: 31, word: "factory", pos: "n.", act: 1,
+    ex: ["Hundreds of workers make cars in that huge *factory*.",
+         "The *factory* runs its machines all day and night."],
+    en: "a building where goods are made, usually by machines", ko: "공장" },
+  { id: 32, word: "worker", pos: "n.", act: 1,
+    ex: ["Each *worker* in the factory had a different job.",
+         "The *workers* asked the boss for higher pay."],
+    en: "a person who works, especially in a factory or with their hands", ko: "노동자, 일꾼, 직원" },
+  { id: 33, word: "customer", pos: "n.", act: 1,
+    ex: ["The shop was full of *customers* on Saturday.",
+         "A polite *customer* thanked the cashier and left."],
+    en: "a person who buys goods or services from a shop or business", ko: "손님, 고객" },
+  { id: 34, word: "profit", pos: "n.", act: 1,
+    ex: ["After paying all the costs, the shop made a small *profit*.",
+         "They sold the old house for a big *profit*."],
+    en: "money gained from business after costs are paid", ko: "이익, 수익" },
+  { id: 35, word: "prospects", pos: "n.", act: 1,
+    ex: ["With top grades and good experience, her job *prospects* were excellent.",
+         "The business had bright *prospects*, with new customers arriving every day."],
+    en: "chances of future success", ko: "전망, (성공) 가망" },
+  { id: 36, word: "capital", pos: "n.", act: 1,
+    ex: ["She used her savings as *capital* to start her own bakery.",
+         "The company needed more *capital* to buy machines and hire workers."],
+    en: "money used to start or run a business", ko: "자본(금)" },
+  { id: 37, word: "afford", pos: "v.", act: 1,
+    ex: ["We can't *afford* a new car this year.",
+         "She saved up until she could *afford* the trip."],
+    en: "to have enough money to pay for something", ko: "(~할) 여유가 있다, 형편이 되다" },
+  { id: 38, word: "hard-headed", pos: "adj.", act: 1,
+    ex: ["A *hard-headed* businesswoman, she made cold decisions based only on the numbers.",
+         "He took a *hard-headed* view of the plan, ignoring his feelings and focusing on facts."],
+    en: "practical and not influenced by emotion", ko: "냉철한, 현실적인" },
+  { id: 39, word: "crank", pos: "n.", act: 1,
+    ex: ["People called him a *crank* because of his strange theory about the moon.",
+         "Only a *crank* would believe such a wild, far-fetched idea."],
+    en: "a person with strange or extreme ideas", ko: "괴짜, 별난 사람" },
+  { id: 40, word: "scaremonger", pos: "n.", act: 1,
+    ex: ["The newspaper was just a *scaremonger*, frightening readers with rumours that weren't true.",
+         "Don't listen to that *scaremonger* spreading panic about a disaster that will never happen."],
+    en: "someone who spreads frightening rumours on purpose", ko: "공포를 부추기는 사람" },
+  { id: 41, word: "unsinkable", pos: "adj.", act: 1,
+    ex: ["The builders claimed the great ship was *unsinkable* and could never go under.",
+         "No boat is truly *unsinkable*, no matter how strong it looks."],
+    en: "impossible to sink", ko: "가라앉지 않는, 침몰하지 않는" },
+  { id: 42, word: "fiddlesticks", pos: "excl.", act: 1,
+    ex: ["*Fiddlesticks!* I don't believe a word of that silly story.",
+         "When she warned him of danger, he just said *Fiddlesticks* and carried on."],
+    en: "nonsense! (an old-fashioned word said when you disagree)", ko: "말도 안 돼! (옛 감탄사)" },
+  { id: 43, word: "community", pos: "n.", act: 1,
+    ex: ["The whole *community* gathered to clean up the park together.",
+         "In a close *community*, neighbours help and look after one another."],
+    en: "all the people living in one area, seen as a group", ko: "공동체, 지역사회" },
+  { id: 44, word: "society", pos: "n.", act: 1,
+    ex: ["In our *society*, all children must go to school.",
+         "She wanted to change *society* for the better."],
+    en: "all the people living together in a community, and their way of life", ko: "사회" },
+  { id: 45, word: "class", pos: "n.", act: 1,
+    ex: ["In the past, your *class* often decided your future.",
+         "He came from a wealthy upper *class* family."],
+    en: "a group in society based on money, job, or status", ko: "계급, 계층" },
+  { id: 46, word: "selfish", pos: "adj.", act: 1,
+    ex: ["It was *selfish* of him to eat all the cake himself.",
+         "Don't be so *selfish*; share with your sister."],
+    en: "caring only about yourself, not about others", ko: "이기적인" },
+  { id: 47, word: "conscience", pos: "n.", act: 1,
+    ex: ["His *conscience* would not let him keep the wallet he had found.",
+         "She felt a guilty *conscience* after telling the lie."],
+    en: "your inner sense of right and wrong", ko: "양심" },
+  { id: 48, word: "honour", pos: "n.", act: 1,
+    ex: ["It was an *honour* to meet the famous writer.",
+         "A knight was expected to fight with *honour*."],
+    en: "great respect; doing what is morally right", ko: "명예, 영예" },
+  { id: 49, word: "knighthood", pos: "n.", act: 1,
+    ex: ["The queen gave the famous scientist a *knighthood*, so now everyone calls him 'Sir'.",
+         "He hoped his years of public service would finally be rewarded with a *knighthood*."],
+    en: "the honour of being made a 'Sir' by a king or queen", ko: "기사 작위 ('Sir' 칭호)" },
+  { id: 50, word: "scandal", pos: "n.", act: 1,
+    ex: ["The newspaper revealed the mayor's secret deals, causing a huge *scandal*.",
+         "To avoid a *scandal*, the family tried to keep the embarrassing news quiet."],
+    en: "an action or event that shocks people because it is seen as wrong", ko: "추문, 스캔들; 불명예" },
+  { id: 51, word: "reputation", pos: "n.", act: 1,
+    ex: ["The restaurant has such a good *reputation* that it is always full.",
+         "One dishonest act can ruin a person's good *reputation* forever."],
+    en: "the general opinion people have about someone or something", ko: "평판, 명성" },
+  { id: 52, word: "magistrate", pos: "n.", act: 1,
+    ex: ["The *magistrate* listened to the small case and decided on a fair punishment.",
+         "As a local *magistrate*, she judged minor crimes in the town court."],
+    en: "a local judge who handles less serious cases", ko: "치안 판사" },
+  { id: 53, word: "alderman", pos: "n.", act: 1,
+    ex: ["As an *alderman*, he helped make decisions on the town council for many years.",
+         "The *alderman* gave a speech at the opening of the new library."],
+    en: "a senior, respected member of a town council", ko: "(시의회) 참사회원, 시의원" },
+  { id: 54, word: "squiffy", pos: "adj.", act: 1,
+    ex: ["After two glasses of wine, Uncle Jim got a bit *squiffy* and began singing loudly.",
+         "He felt *squiffy* at the party, so he switched to water for the rest of the night."],
+    en: "slightly drunk (old British slang)", ko: "약간 취한 (영국 옛 속어)" },
+  { id: 55, word: "jolly", pos: "adv.", act: 1,
+    ex: ["That was a *jolly* good dinner, one of the best I've ever had.",
+         "It's *jolly* cold outside today, so wrap up warm."],
+    en: "very (old British, used to make a word stronger)", ko: "무척, 아주 (영국 옛 표현)" },
+  { id: 56, word: "beastly", pos: "adj.", act: 1,
+    ex: ["What *beastly* weather, rain and wind all day long!",
+         "It was *beastly* of him to laugh at her mistake."],
+    en: "very unpleasant or horrible (old British)", ko: "지독한, 끔찍한 (영국 옛 표현)" },
+  { id: 57, word: "rot", pos: "n.", act: 1,
+    ex: ["Don't talk *rot*, that story can't possibly be true!",
+         "He dismissed the rumour as complete *rot* and walked away."],
+    en: "nonsense; rubbish (informal British)", ko: "헛소리, 터무니없는 말" },
+  { id: 58, word: "cheek", pos: "n.", act: 1,
+    ex: ["He had the *cheek* to ask for more money after arriving late.",
+         "What a *cheek*, taking my seat without even asking!"],
+    en: "rude or disrespectful boldness (British)", ko: "뻔뻔함, 무례함" },
+  { id: 59, word: "inspector", pos: "n.", act: 1,
+    ex: ["The police *inspector* questioned everyone in the house about the missing jewels.",
+         "An *inspector* arrived to investigate exactly what had happened that night."],
+    en: "a senior police officer who investigates crimes", ko: "경위, 조사관" },
+  { id: 60, word: "grave", pos: "adj.", act: 1,
+    ex: ["The doctor's face was *grave* as she gave the serious news.",
+         "This is a *grave* matter, so we must think very carefully before acting."],
+    en: "very serious and solemn", ko: "심각한, 엄숙한" },
+  { id: 61, word: "solemn", pos: "adj.", act: 1,
+    ex: ["Everyone stayed *solemn* and silent during the memorial service.",
+         "He made a *solemn* promise, looking her steadily in the eyes."],
+    en: "very serious and formal", ko: "엄숙한, 진지한" },
+  { id: 62, word: "infirmary", pos: "n.", act: 1,
+    ex: ["The injured worker was rushed to the *infirmary* to be treated by a nurse.",
+         "When pupils feel ill at the boarding school, they go to the *infirmary* to rest."],
+    en: "a place, like a small hospital, where sick or injured people are cared for", ko: "병원, 의무실" },
+  { id: 63, word: "nurse", pos: "n.", act: 1,
+    ex: ["The *nurse* gently checked the patient's temperature.",
+         "A kind *nurse* looked after him all night in the hospital."],
+    en: "a person trained to care for sick or injured people", ko: "간호사" },
+  { id: 64, word: "disinfectant", pos: "n.", act: 1,
+    ex: ["She wiped the kitchen counter with a strong *disinfectant* to kill all the germs.",
+         "Hospitals often smell of *disinfectant* because everything is cleaned to remove bacteria."],
+    en: "a chemical that destroys germs and bacteria", ko: "소독제, 살균제" },
+  { id: 65, word: "agony", pos: "n.", act: 1,
+    ex: ["He cried out in *agony* when he broke his leg.",
+         "Waiting for the test results was pure *agony* for the whole family."],
+    en: "very great pain or suffering", ko: "극심한 고통, 고뇌" },
+  { id: 66, word: "suicide", pos: "n.", act: 1,
+    ex: ["The detective tried to learn whether the death was an accident or a *suicide*.",
+         "The sad story is about the *suicide* of a lonely young woman."],
+    en: "the act of deliberately ending one's own life", ko: "자살" },
+  { id: 67, word: "inquest", pos: "n.", act: 1,
+    ex: ["After the sudden death, there was an *inquest* to find out how the man had died.",
+         "The *inquest* decided that the accident had not been anyone's fault."],
+    en: "an official inquiry to find out how someone died", ko: "(사인 규명을 위한) 검시, 심리" },
+  { id: 68, word: "inquiry", pos: "n.", act: 1,
+    ex: ["The police opened an *inquiry* to find out exactly how the accident happened.",
+         "After the bridge collapsed, the government held an official *inquiry* into the cause."],
+    en: "an official investigation to find out the truth", ko: "조사, 심문" },
+  { id: 69, word: "photograph", pos: "n.", act: 1,
+    ex: ["She kept a *photograph* of her family on her desk.",
+         "The detective showed him a *photograph* of the missing girl."],
+    en: "a picture made with a camera", ko: "사진" },
+  { id: 70, word: "diary", pos: "n.", act: 1,
+    ex: ["Every night she writes about her day in her *diary*.",
+         "He hid his secret *diary* under the bed."],
+    en: "a book where you write what happens each day, or your private thoughts", ko: "일기(장), 다이어리" },
+  { id: 71, word: "terrible", pos: "adj.", act: 1,
+    ex: ["There was a *terrible* storm that knocked down trees.",
+         "She felt *terrible* after forgetting her friend's birthday."],
+    en: "very bad; causing fear, shock, or upset", ko: "끔찍한, 지독한" },
+  { id: 72, word: "wages", pos: "n.", act: 1,
+    ex: ["The workers collected their weekly *wages* every Friday afternoon.",
+         "She complained that her *wages* were too low to pay the rent."],
+    en: "money paid to a worker, usually weekly, for their work", ko: "임금, 급여" },
+  { id: 73, word: "raise", pos: "n.", act: 1,
+    ex: ["The workers asked the boss for a *raise* in their pay.",
+         "After her hard work, she was given a *raise*."],
+    en: "an increase, especially in the amount of pay", ko: "(임금) 인상; 올리다" },
+  { id: 74, word: "demand", pos: "v.", act: 1,
+    ex: ["The angry crowd began to *demand* answers.",
+         "She *demanded* her money back from the shop."],
+    en: "to ask for something very firmly, as if it must be given", ko: "요구하다, 강력히 요청하다" },
+  { id: 75, word: "fair", pos: "adj.", act: 1,
+    ex: ["It isn't *fair* that he got a bigger piece than me.",
+         "A good referee must be *fair* to both teams."],
+    en: "treating everyone equally and according to the rules", ko: "공정한, 공평한" },
+  { id: 76, word: "strike", pos: "n.", act: 1,
+    ex: ["The factory workers went on *strike*, refusing to work until their pay was raised.",
+         "During the *strike*, no trains ran for three whole days."],
+    en: "when workers stop work together to demand better pay or conditions", ko: "파업" },
+  { id: 77, word: "refuse", pos: "v.", act: 1,
+    ex: ["She *refused* to eat her vegetables.",
+         "He *refused* the offer, saying he didn't need any help."],
+    en: "to say firmly that you will not do or accept something", ko: "거절하다, 거부하다" },
+  { id: 78, word: "premises", pos: "n.", act: 1,
+    ex: ["The shop owner locked up the *premises* at the end of the day.",
+         "No smoking is allowed anywhere on the company's *premises*."],
+    en: "the building and land that a business uses", ko: "(사업용) 건물, 구내, 부지" },
+  { id: 79, word: "trade", pos: "n.", act: 1,
+    ex: ["He had worked in the building *trade* for over twenty years.",
+         "Business was slow because *trade* with other countries had dropped."],
+    en: "the business of buying and selling goods; an industry", ko: "거래, 장사, 업계" },
+  { id: 80, word: "discharge", pos: "v.", act: 1,
+    ex: ["The factory owner chose to *discharge* several workers because there was not enough work.",
+         "The doctor said the patient was well enough to be *discharged* from the hospital."],
+    en: "to officially send someone away, especially from a job or a hospital", ko: "해고하다; 퇴원시키다" },
+  { id: 81, word: "dismiss", pos: "v.", act: 1,
+    ex: ["The boss decided to *dismiss* him for being lazy.",
+         "She tried to *dismiss* the idea as unimportant."],
+    en: "to remove someone from a job; or to decide something is not worth thinking about", ko: "해고하다; 묵살하다, 무시하다" },
+  { id: 82, word: "sack", pos: "n.", act: 1,
+    ex: ["He was given the *sack* after arriving late every single day.",
+         "If you keep making mistakes, the boss may give you the *sack*."],
+    en: "being dismissed from a job (informal, 'the sack')", ko: "해고" },
+  { id: 83, word: "obstinate", pos: "adj.", act: 1,
+    ex: ["The *obstinate* child refused to put on his coat no matter what anyone said.",
+         "She was so *obstinate* that she would not change her mind, even when she was wrong."],
+    en: "stubborn; refusing to change your mind", ko: "고집 센, 완고한" },
+  { id: 84, word: "ringleader", pos: "n.", act: 1,
+    ex: ["Of all the pupils in the prank, he was the *ringleader* who planned the whole thing.",
+         "The police arrested the *ringleader* of the gang before catching the others."],
+    en: "the leader of a group that is doing something wrong or causing trouble", ko: "주모자, 주동자" },
+  { id: 85, word: "agitator", pos: "n.", act: 1,
+    ex: ["The owners called her an *agitator* because she urged the workers to demand fair pay.",
+         "Police kept an eye on the *agitator* who was stirring up the crowd to protest."],
+    en: "a person who urges others to protest or to cause trouble for a cause", ko: "선동가" },
+  { id: 86, word: "cruel", pos: "adj.", act: 1,
+    ex: ["It was *cruel* to leave the dog out in the freezing cold.",
+         "The *cruel* king made his people suffer."],
+    en: "causing pain or suffering to others without caring", ko: "잔인한, 가혹한" },
+  { id: 87, word: "wretched", pos: "adj.", act: 1,
+    ex: ["The lost puppy looked *wretched*, shivering and soaked in the cold rain.",
+         "After failing the test he had studied so hard for, he felt absolutely *wretched*."],
+    en: "very unhappy, or in a very poor and miserable condition", ko: "비참한, 불쌍한" },
+  { id: 88, word: "staggered", pos: "adj.", act: 1,
+    ex: ["I was *staggered* when I heard he had won a million pounds.",
+         "She looked *staggered*, unable to believe the shocking news."],
+    en: "deeply shocked or astonished", ko: "큰 충격을 받은, 깜짝 놀란" },
+  { id: 89, word: "blame", pos: "v.", act: 1,
+    ex: ["Don't *blame* me for something I didn't do.",
+         "They *blamed* the accident on the icy road."],
+    en: "to say that someone or something is responsible for something bad", ko: "비난하다, ~의 탓으로 돌리다" },
+  { id: 90, word: "fault", pos: "n.", act: 1,
+    ex: ["The accident was entirely my *fault*.",
+         "It's not your *fault* that it rained."],
+    en: "responsibility for something wrong; a mistake or weakness", ko: "잘못, 책임; 결점" },
+  { id: 91, word: "manager", pos: "n.", act: 1,
+    ex: ["The shop *manager* decides which staff work each day.",
+         "She complained to the *manager* about the rude waiter."],
+    en: "a person in charge of a shop, team, or business", ko: "관리자, 지배인, 매니저" },
+  { id: 92, word: "assistant", pos: "n.", act: 1,
+    ex: ["The shop *assistant* helped the customer find the right size.",
+         "As a teaching *assistant*, she helped the pupils with their reading."],
+    en: "a person whose job is to help someone, often in a shop", ko: "점원, 조수, 보조" },
+  { id: 93, word: "complaint", pos: "n.", act: 1,
+    ex: ["The customer made a *complaint* about the cold soup.",
+         "After many *complaints*, the company finally fixed the problem."],
+    en: "a statement that you are unhappy or unsatisfied about something", ko: "불평, 항의, 불만" },
+  { id: 94, word: "jealous", pos: "adj.", act: 1,
+    ex: ["He was *jealous* of his friend's shiny new bicycle.",
+         "She felt *jealous* when her sister got all the attention."],
+    en: "unhappy because you want what someone else has", ko: "질투하는, 시기하는" },
+  { id: 95, word: "spiteful", pos: "adj.", act: 1,
+    ex: ["It was *spiteful* of her to tear up his drawing just because she was jealous.",
+         "He made a *spiteful* remark on purpose, hoping to hurt her feelings."],
+    en: "wanting to hurt or upset someone on purpose", ko: "악의적인, 심술궂은" },
+  { id: 96, word: "furious", pos: "adj.", act: 1,
+    ex: ["She was *furious* when she saw the mess they had made of her kitchen.",
+         "He gave a *furious* shout and slammed the door."],
+    en: "extremely angry", ko: "몹시 화난, 격노한" },
+  { id: 97, word: "temper", pos: "n.", act: 1,
+    ex: ["He lost his *temper* and started yelling at everyone in the room.",
+         "She has a quick *temper* and gets angry over the smallest things."],
+    en: "a tendency to get angry quickly; an angry mood", ko: "성질, 화, 욱하는 성미" },
+  { id: 98, word: "lie", pos: "n.", act: 1,
+    ex: ["He told a *lie* about where he had been.",
+         "Her story was full of *lies* from start to finish."],
+    en: "something said that you know is not true", ko: "거짓말" },
+  { id: 99, word: "truth", pos: "n.", act: 1,
+    ex: ["Please tell me the *truth* about what happened.",
+         "The *truth* finally came out after many years."],
+    en: "what is true; the real facts", ko: "진실, 사실" },
+  { id: 100, word: "prove", pos: "v.", act: 1,
+    ex: ["Can you *prove* that you were at home last night?",
+         "The photo *proved* that he was telling the truth."],
+    en: "to show clearly that something is true", ko: "증명하다, 입증하다" },
+  { id: 101, word: "evidence", pos: "n.", act: 1,
+    ex: ["The police searched for *evidence* at the scene.",
+         "There was no *evidence* that he had taken the money."],
+    en: "facts or signs that show whether something is true", ko: "증거" },
+  { id: 102, word: "statement", pos: "n.", act: 1,
+    ex: ["She gave a *statement* to the police about the crime.",
+         "The company made an official *statement* to the news."],
+    en: "something said or written officially or formally", ko: "진술, 성명, 진술서" },
+  { id: 103, word: "obvious", pos: "adj.", act: 1,
+    ex: ["It was *obvious* from his smile that he was happy.",
+         "The answer is so *obvious* that everyone got it right."],
+    en: "very easy to see or understand; clear", ko: "명백한, 분명한, 뻔한" },
+  { id: 104, word: "distressed", pos: "adj.", act: 1,
+    ex: ["The mother was *distressed* when she could not find her child in the crowd.",
+         "He looked deeply *distressed* after hearing the sad news."],
+    en: "very upset, worried, or troubled", ko: "괴로워하는, 고통스러운" },
+  { id: 105, word: "ashamed", pos: "adj.", act: 1,
+    ex: ["He felt *ashamed* of the cruel thing he had said to his friend.",
+         "She was *ashamed* of her low marks and hid the report from her parents."],
+    en: "feeling guilty or embarrassed about something you did", ko: "부끄러운, 창피한" },
+  { id: 106, word: "impression", pos: "n.", act: 1,
+    ex: ["His kind smile gave a good first *impression* to everyone he met.",
+         "The film left a strong *impression* on her; she thought about it for days."],
+    en: "the effect or feeling that someone or something gives you", ko: "인상, 느낌" },
+  { id: 107, word: "protest", pos: "n.", act: 1,
+    ex: ["The workers held a *protest* outside the factory, holding up signs.",
+         "She gave a loud *protest* when the referee made an unfair call."],
+    en: "a strong statement or action against something you think is wrong", ko: "항의, 시위" },
+
+  // ===================== ACT TWO =====================
+  { id: 108, word: "mistress", pos: "n.", act: 2,
+    ex: ["In the old story, the wealthy man kept a *mistress* in a separate house.",
+         "She was his *mistress*, a woman he supported but had not married."],
+    en: "a woman a man supports and has a relationship with, though they are not married", ko: "내연녀, 정부" },
+  { id: 109, word: "respectable", pos: "adj.", act: 2,
+    ex: ["They wanted to seem a *respectable* family, so they always behaved politely in public.",
+         "He put on a clean, *respectable* suit for the important interview."],
+    en: "considered to be good, proper, and socially acceptable", ko: "점잖은, 훌륭한, 존경할 만한" },
+  { id: 110, word: "gentleman", pos: "n.", act: 2,
+    ex: ["A true *gentleman* opened the door and let her go first.",
+         "He behaved like a perfect *gentleman* all evening."],
+    en: "a polite, well-mannered man; a man of high social class", ko: "신사" },
+  { id: 111, word: "assume", pos: "v.", act: 2,
+    ex: ["Don't just *assume* the shop is open, call them first to make sure.",
+         "Seeing his uniform, I *assumed* he was a police officer."],
+    en: "to believe something is true without proof; also, to take on a name or role", ko: "추정하다, 가정하다; (이름·역할을) 취하다" },
+  { id: 112, word: "influence", pos: "n./v.", act: 2,
+    ex: ["Her older brother had a big *influence* on the kind of music she liked.",
+         "Advertisements are designed to *influence* what people choose to buy."],
+    en: "the power to affect how someone thinks, behaves, or how things turn out", ko: "영향(력); 영향을 주다" },
+  { id: 113, word: "charity", pos: "n.", act: 2,
+    ex: ["The *charity* gives food and shelter to people who have lost their homes.",
+         "She gave money to a *charity* that helps sick children."],
+    en: "an organization that helps people in need", ko: "자선 단체; 자선" },
+  { id: 114, word: "committee", pos: "n.", act: 2,
+    ex: ["A *committee* of five teachers met to decide the rules for the school trip.",
+         "The *committee* voted on whether to spend the money on new books."],
+    en: "a group of people chosen to make decisions together", ko: "위원회" },
+  { id: 115, word: "appeal", pos: "n./v.", act: 2,
+    ex: ["She made an *appeal* to the council, begging them for help with the rent.",
+         "He *appealed* to the judge to give him one more chance."],
+    en: "an urgent or serious request for help", ko: "호소, 간청; 호소하다" },
+  { id: 116, word: "deserving", pos: "adj.", act: 2,
+    ex: ["The charity gives money only to the most *deserving* families in real need.",
+         "She is a *deserving* winner who has worked harder than anyone."],
+    en: "worthy of help, support, or reward", ko: "도움받을 자격이 있는, 마땅한" },
+  { id: 117, word: "behaviour", pos: "n.", act: 2,
+    ex: ["The teacher praised the children's good *behaviour*.",
+         "His rude *behaviour* shocked everyone at the party."],
+    en: "the way that someone acts", ko: "행동, 행실, 태도" },
+  { id: 118, word: "manner", pos: "n.", act: 2,
+    ex: ["I didn't like his rude *manner* when he answered my question.",
+         "She spoke in a calm, gentle *manner* that put everyone at ease."],
+    en: "the way someone behaves or speaks", ko: "태도, 몸가짐, 방식" },
+  { id: 119, word: "impertinent", pos: "adj.", act: 2,
+    ex: ["The student was sent out of class for giving an *impertinent* reply to the teacher.",
+         "It was *impertinent* of him to ask his boss exactly how much money she earned."],
+    en: "rude and not showing proper respect", ko: "무례한, 버릇없는" },
+  { id: 120, word: "prejudiced", pos: "adj.", act: 2,
+    ex: ["A judge must not be *prejudiced*; he has to hear both sides fairly before deciding.",
+         "She realised she had been *prejudiced* against the new boy just because of how he dressed."],
+    en: "having an unfair opinion formed before knowing the facts", ko: "편견을 가진" },
+  { id: 121, word: "admit", pos: "v.", act: 2,
+    ex: ["He finally *admitted* that he had broken the vase.",
+         "She *admitted* she was wrong and said sorry."],
+    en: "to agree that something is true, often unwillingly", ko: "인정하다, 시인하다" },
+  { id: 122, word: "deny", pos: "v.", act: 2,
+    ex: ["He *denied* taking the money, even with the proof against him.",
+         "She *denied* that she had ever met him before."],
+    en: "to say that something is not true", ko: "부인하다, 부정하다" },
+  { id: 123, word: "pretend", pos: "v.", act: 2,
+    ex: ["The children *pretend* to be pirates on the playground.",
+         "He *pretended* to be asleep so he wouldn't have to talk."],
+    en: "to act as if something is true when it is not", ko: "~인 척하다, 가장하다" },
+  { id: 124, word: "elaborate", pos: "adj.", act: 2,
+    ex: ["The cake had an *elaborate* design with hundreds of tiny sugar flowers.",
+         "He made up an *elaborate* excuse with far too many complicated details."],
+    en: "very detailed and complicated", ko: "정교한, 공들인, 복잡한" },
+  { id: 125, word: "absurd", pos: "adj.", act: 2,
+    ex: ["It is *absurd* to wear a winter coat on the hottest day of summer.",
+         "His claim that the dog ate his homework sounded completely *absurd*."],
+    en: "completely ridiculous or unreasonable", ko: "터무니없는, 어이없는" },
+  { id: 126, word: "duty", pos: "n.", act: 2,
+    ex: ["It is a soldier's *duty* to protect the people of the country.",
+         "She felt it was her *duty* to care for her elderly neighbour."],
+    en: "something you ought to do; a moral or job obligation", ko: "의무, 본분, 임무" },
+  { id: 127, word: "evasive", pos: "adj.", act: 2,
+    ex: ["Asked where he had been all night, he gave an *evasive* answer and changed the subject.",
+         "Her *evasive* replies made the detective certain she was hiding something."],
+    en: "trying to avoid giving a direct or honest answer", ko: "회피하는, 얼버무리는" },
+  { id: 128, word: "cynical", pos: "adj.", act: 2,
+    ex: ["He was so *cynical* that he believed no one ever did a kind thing without a selfish reason.",
+         "After being tricked many times, she grew *cynical* about strangers' promises."],
+    en: "believing people are only selfish, and not trusting good intentions", ko: "냉소적인, 비뚤어진" },
+  { id: 129, word: "sneer", pos: "v.", act: 2,
+    ex: ["He began to *sneer* at her drawing, curling his lip in a nasty way.",
+         "Don't *sneer* at people who are still learning; everyone starts somewhere."],
+    en: "to smile or speak in a scornful, mocking way", ko: "비웃다, 조롱하다" },
+  { id: 130, word: "scornful", pos: "adj.", act: 2,
+    ex: ["She gave a *scornful* laugh, as if his idea were beneath her.",
+         "His *scornful* look made the new boy feel small and worthless."],
+    en: "showing you think someone or something is worthless", ko: "경멸하는, 멸시하는" },
+  { id: 131, word: "guilty", pos: "adj.", act: 2,
+    ex: ["She felt *guilty* for eating her brother's snack.",
+         "The court found him *guilty* of the crime."],
+    en: "feeling bad because you did wrong; or responsible for a crime", ko: "죄책감을 느끼는; 유죄의" },
+  { id: 132, word: "remorse", pos: "n.", act: 2,
+    ex: ["After breaking his sister's toy, he felt deep *remorse* and apologised again and again.",
+         "The thief showed no *remorse* at all for the people he had harmed."],
+    en: "a strong feeling of sadness and guilt for something you did wrong", ko: "후회, 양심의 가책" },
+  { id: 133, word: "pity", pos: "n.", act: 2,
+    ex: ["I felt *pity* for the cold, hungry stray cat.",
+         "It's a *pity* you can't come to the party."],
+    en: "a feeling of sadness for someone else's suffering", ko: "연민, 동정; 안타까운 일" },
+  { id: 134, word: "sympathy", pos: "n.", act: 2,
+    ex: ["She felt great *sympathy* for the family who had lost their home in the fire.",
+         "He offered words of *sympathy* to his grieving friend."],
+    en: "the feeling of caring about and sharing someone's suffering", ko: "동정, 연민, 공감" },
+  { id: 135, word: "advice", pos: "n.", act: 2,
+    ex: ["My teacher gave me good *advice* about studying.",
+         "Take my *advice* and get plenty of sleep before the test."],
+    en: "an opinion about what someone should do", ko: "충고, 조언" },
+  { id: 136, word: "friendless", pos: "adj.", act: 2,
+    ex: ["New to the school, she felt lonely and *friendless*.",
+         "The *friendless* old man had no one to visit him."],
+    en: "having no friends; lonely", ko: "친구가 없는, 외로운" },
+  { id: 137, word: "penniless", pos: "adj.", act: 2,
+    ex: ["After losing his job, he was left *penniless* and could not even buy food.",
+         "She arrived in the city *penniless*, with nothing but the clothes she wore."],
+    en: "having no money at all", ko: "무일푼의, 빈털터리의" },
+  { id: 138, word: "desperate", pos: "adj.", act: 2,
+    ex: ["He was so *desperate* for water in the desert that he would have done anything.",
+         "In a *desperate* situation, the trapped miners shouted for help."],
+    en: "in such a bad situation that you will do almost anything", ko: "절망적인, 필사적인" },
+  { id: 139, word: "suffer", pos: "v.", act: 2,
+    ex: ["Many people *suffer* from the cold during winter.",
+         "He *suffered* a lot of pain after the accident."],
+    en: "to feel pain, sadness, or great difficulty", ko: "고통받다, 시달리다" },
+  { id: 140, word: "pregnant", pos: "adj.", act: 2,
+    ex: ["She was *pregnant* and would have her baby in the spring.",
+         "The *pregnant* woman was kindly given a seat on the bus."],
+    en: "going to have a baby", ko: "임신한" },
+  { id: 141, word: "hysterical", pos: "adj.", act: 2,
+    ex: ["She became *hysterical*, screaming and crying so hard that no one could calm her.",
+         "When the alarm rang, a few people got *hysterical* and started to panic."],
+    en: "unable to control your emotions because you are extremely upset or scared", ko: "히스테릭한, 미친 듯이 흥분한" },
+  { id: 142, word: "notorious", pos: "adj.", act: 2,
+    ex: ["The street was *notorious* for crime, so people avoided it at night.",
+         "He was a *notorious* cheat, famous all over town for his tricks."],
+    en: "famous, but for something bad", ko: "악명 높은" },
+  { id: 143, word: "anxious", pos: "adj.", act: 2,
+    ex: ["She felt *anxious* before the big exam, her hands shaking a little.",
+         "He was *anxious* about his sick puppy and kept checking on it."],
+    en: "worried and uneasy about something", ko: "불안한, 염려하는" },
+  { id: 144, word: "agitated", pos: "adj.", act: 2,
+    ex: ["He became *agitated*, pacing the room and unable to sit still.",
+         "She grew *agitated* as the bad news sank in, wringing her hands."],
+    en: "very nervous, worried, or upset", ko: "불안해하는, 동요한, 흥분한" },
+  { id: 145, word: "triumphant", pos: "adj.", act: 2,
+    ex: ["With a *triumphant* smile, she held up the winner's trophy.",
+         "He gave a *triumphant* shout when he finally solved the puzzle."],
+    en: "showing great satisfaction or joy because you have won", ko: "의기양양한, 승리감에 찬" },
+  { id: 146, word: "bitterly", pos: "adv.", act: 2,
+    ex: ["She wept *bitterly* over the loss of her dearest friend.",
+         "He complained *bitterly* about how unfairly he had been treated."],
+    en: "with strong anger, sadness, or resentment", ko: "비통하게, 격렬하게, 몹시" },
+  { id: 147, word: "compelled", pos: "adj.", act: 2,
+    ex: ["She felt *compelled* to tell the truth, even though it was difficult.",
+         "Heavy rain *compelled* them to cancel the outdoor party."],
+    en: "forced to do something, by rules, pressure, or your own feelings", ko: "강요받은, 하지 않을 수 없는" },
+  { id: 148, word: "confess", pos: "v.", act: 2,
+    ex: ["After hours of questioning, the suspect finally *confessed* that he had taken the money.",
+         "She decided to *confess* to her parents that she had broken the window."],
+    en: "to admit that you have done something wrong", ko: "고백하다, 자백하다" },
+  { id: 149, word: "responsibility", pos: "n.", act: 2,
+    ex: ["Feeding the new puppy every day is your *responsibility*.",
+         "The captain took full *responsibility* for the team's mistake."],
+    en: "a duty to take care of something, or being the cause of something", ko: "책임, 의무" },
+  { id: 150, word: "severely", pos: "adv.", act: 2,
+    ex: ["The pupils who cheated were *severely* punished and sent home.",
+         "She was *severely* injured and had to stay in hospital for weeks."],
+    en: "very harshly or very seriously", ko: "엄하게, 심하게, 호되게" },
+  { id: 151, word: "idler", pos: "n.", act: 2,
+    ex: ["The lazy *idler* lay in bed all day while everyone else worked.",
+         "His father called him an *idler* for never finishing any job."],
+    en: "a lazy person who avoids work", ko: "게으름뱅이, 빈둥거리는 사람" },
+  { id: 152, word: "queer", pos: "adj.", act: 2,
+    ex: ["There was a *queer* smell in the old house that no one could explain.",
+         "He gave me a *queer* look, as if something strange had happened."],
+    en: "strange or odd (an older meaning of the word)", ko: "이상한, 묘한 (옛 의미)" },
+  { id: 153, word: "hush", pos: "v.", act: 2,
+    ex: ["They tried to *hush* up the embarrassing story so no one would find out.",
+         "She *hushed* the crying baby with a soft, gentle song."],
+    en: "to make quiet; to keep something secret ('hush up')", ko: "조용히 시키다; 쉬쉬하다" },
+
+  // ===================== ACT THREE =====================
+  { id: 154, word: "drunk", pos: "adj.", act: 3,
+    ex: ["After too many drinks, he became *drunk* and could barely walk.",
+         "It is dangerous to drive a car when you are *drunk*."],
+    en: "having had too much alcohol", ko: "술 취한" },
+  { id: 155, word: "nasty", pos: "adj.", act: 3,
+    ex: ["That was a *nasty* thing to say; you really hurt her feelings.",
+         "He turned *nasty* and started shouting when he didn't get his way."],
+    en: "unpleasant, unkind, or mean", ko: "못된, 고약한, 불쾌한" },
+  { id: 156, word: "row", pos: "n.", act: 3,
+    ex: ["The two brothers had a terrible *row* and didn't speak for a week.",
+         "She heard a loud *row* coming from the flat next door."],
+    en: "a noisy quarrel or argument (British)", ko: "(영국) 말다툼, 소동" },
+  { id: 157, word: "threaten", pos: "v.", act: 3,
+    ex: ["The bully tried to *threaten* the smaller boy to get his lunch money.",
+         "He *threatened* to tell the teacher unless they let him join the game."],
+    en: "to warn that you will harm or punish someone", ko: "위협하다, 협박하다" },
+  { id: 158, word: "borrow", pos: "v.", act: 3,
+    ex: ["Can I *borrow* your pencil? I'll give it back soon.",
+         "He *borrowed* money from a friend to pay the rent."],
+    en: "to take something for a while, meaning to return it", ko: "빌리다" },
+  { id: 159, word: "steal", pos: "v.", act: 3,
+    ex: ["It is wrong to *steal* things from a shop.",
+         "Someone tried to *steal* her bag on the crowded bus."],
+    en: "to take something that is not yours, without permission", ko: "훔치다, 도둑질하다" },
+  { id: 160, word: "insist", pos: "v.", act: 3,
+    ex: ["She *insisted* on paying the whole bill, no matter how much we argued.",
+         "He *insisted* that he was right, even after he was shown to be wrong."],
+    en: "to demand or say something firmly, refusing to give up", ko: "우기다, 고집하다, 강력히 주장하다" },
+  { id: 161, word: "intend", pos: "v.", act: 3,
+    ex: ["I *intend* to finish all my homework before dinner tonight.",
+         "She *intended* to help, but she ran out of time."],
+    en: "to plan or mean to do something", ko: "의도하다, 작정하다" },
+  { id: 162, word: "stammer", pos: "v.", act: 3,
+    ex: ["He began to *stammer* nervously, repeating the same word again and again.",
+         "She *stammered* an apology, too embarrassed to speak clearly."],
+    en: "to speak with nervous pauses and repeated sounds", ko: "말을 더듬다" },
+  { id: 163, word: "grandchild", pos: "n.", act: 3,
+    ex: ["The old woman smiled at her *grandchild*, the baby of her own daughter.",
+         "He has five grandchildren, the children of his two sons."],
+    en: "the child of your son or daughter", ko: "손주 (아들·딸의 자녀)" },
+  { id: 164, word: "realize", pos: "v.", act: 3,
+    ex: ["Halfway home, she *realized* she had left her keys behind.",
+         "He suddenly *realized* that he had made a big mistake."],
+    en: "to suddenly understand or become aware of something", ko: "깨닫다, 알아차리다" },
+  { id: 165, word: "forgive", pos: "v.", act: 3,
+    ex: ["She decided to *forgive* her friend for the unkind words.",
+         "Please *forgive* me; I didn't mean to hurt you."],
+    en: "to stop feeling angry at someone for something they did", ko: "용서하다" },
+  { id: 166, word: "intertwined", pos: "adj.", act: 3,
+    ex: ["The two plants grew *intertwined*, their stems wrapped around each other.",
+         "Their lives were so *intertwined* that what hurt one hurt the other."],
+    en: "twisted or connected closely together", ko: "뒤얽힌, 밀접히 연결된" },
+  { id: 167, word: "anguish", pos: "n.", act: 3,
+    ex: ["The family waited in *anguish* for news of the missing sailors.",
+         "Her face was full of *anguish* as she described the terrible accident."],
+    en: "very strong pain, suffering, or worry", ko: "고뇌, 극심한 고통" },
+  { id: 168, word: "responsible", pos: "adj.", act: 3,
+    ex: ["He felt *responsible* for the accident because he had left the gate open.",
+         "A *responsible* babysitter never leaves the children alone."],
+    en: "being the cause of something; trustworthy and able to be relied on", ko: "책임이 있는; 믿을 만한" },
+  { id: 169, word: "generation", pos: "n.", act: 3,
+    ex: ["My grandparents' *generation* grew up without computers or phones.",
+         "Each *generation* learns from the mistakes of the one before it."],
+    en: "all the people born and living around the same time", ko: "세대" },
+  { id: 170, word: "extraordinary", pos: "adj.", act: 3,
+    ex: ["It was an *extraordinary* sight, a rainbow stretching right across the city.",
+         "She has an *extraordinary* talent for music, far beyond anyone her age."],
+    en: "very unusual or remarkable", ko: "놀라운, 비범한, 대단한" },
+  { id: 171, word: "exhausted", pos: "adj.", act: 3,
+    ex: ["After running the whole race, she was completely *exhausted* and could barely stand.",
+         "The *exhausted* travellers fell asleep the moment they reached the hotel."],
+    en: "extremely tired", ko: "기진맥진한, 매우 지친" },
+  { id: 172, word: "relieved", pos: "adj.", act: 3,
+    ex: ["She was *relieved* to find her lost phone safe under the sofa.",
+         "He felt *relieved* when the doctor said it was nothing serious."],
+    en: "no longer worried; feeling relief after a worry has passed", ko: "안도하는, 마음이 놓이는" },
+  { id: 173, word: "hoax", pos: "n.", act: 3,
+    ex: ["The story of a monster in the lake turned out to be a *hoax* made up to fool tourists.",
+         "The email promising free money was just a *hoax* to trick people."],
+    en: "a trick that makes people believe something that is not true", ko: "거짓말, 속임수, 장난" },
+  { id: 174, word: "impostor", pos: "n.", act: 3,
+    ex: ["The man claiming to be a doctor was an *impostor* with no medical training at all.",
+         "An *impostor* wore the guard's uniform to sneak into the palace."],
+    en: "someone who pretends to be a person they are not", ko: "사기꾼, (남을 사칭한) 가짜" },
+  { id: 175, word: "excuse", pos: "n.", act: 3,
+    ex: ["He gave a weak *excuse* for being late, blaming the weather.",
+         "There is no *excuse* for being so unkind to your little sister."],
+    en: "a reason given to explain or defend a fault", ko: "변명, 핑계" },
+];
+(function(){
+  "use strict";
+  var C = { bg:"#1b232f", bg2:"#222d3c", paper:"#f7f3ea", paperEdge:"#ece5d4", ink:"#26303c", inkSoft:"#5b6675", line:"#e3dccb", gold:"#c79a3a", goldSoft:"#e7d8a8", clay:"#bf6a52", claySoft:"#eccabe", teal:"#3f8a8f", tealSoft:"#cfe2e2", indigo:"#6b6fae", indigoSoft:"#dadcf0", gray:"#9aa3ad", paperOnDark:"#cdd4dd" };
+  var STATUS_COLOR = { new:C.gray, learning:C.clay, ready:C.teal, spelling:C.indigo, mastered:C.gold };
+  var STATUS_LABEL = { new:"새 단어", learning:"학습 중", ready:"객관식 대기", spelling:"빈칸 대기", mastered:"외웠어요" };
+  var RANK = { new:0, learning:1, ready:2, spelling:3, mastered:4 };
+  var SERIF = "Georgia, 'Times New Roman', serif";
+  var SANS = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+  var KEY = "aic_vocab_progress_html_v1";
+
+  // ---------- state ----------
+  var progress = {};
+  WORDS.forEach(function(w){ progress[w.id] = "new"; });
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) WORDS.forEach(function(w){ if (saved[w.id]) progress[w.id] = saved[w.id]; }); } catch(e){}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(progress)); } catch(e){} }
+  function setStatus(id, st){ if (progress[id] !== st) { progress[id] = st; save(); } }
+
+  var mode = "learn";
+  var study = { idx:0, step:0 };
+  var listRevealed = {}, listAllOn = false;
+  var quiz = null, fillInput = "", resetConfirm = false;
+
+  // ---------- utils ----------
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function renderEx(text, color){ return esc(text).replace(/\*([^*]+)\*/g, function(m,p1){ return '<strong style="color:'+color+';font-weight:700;border-bottom:2px solid '+color+'55">'+p1+'</strong>'; }); }
+  function norm(x){ return (x||"").trim().toLowerCase().replace(/[.,!?;:'"]+$/g,""); }
+  function markedToken(s){ var m = s.match(/\*([^*]+)\*/); return m ? m[1] : ""; }
+  function blankSentence(s){ return s.replace(/\*[^*]+\*/, "\u2009______\u2009"); }
+  function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function studyWords(){ return mode === "review" ? WORDS.filter(function(w){ return progress[w.id]==="learning"; }) : WORDS; }
+  function counts(){ var c={new:0,learning:0,ready:0,spelling:0,mastered:0}; WORDS.forEach(function(w){ c[progress[w.id]]++; }); return c; }
+
+  // ---------- British pronunciation (Web Speech API) ----------
+  var gbVoice = null;
+  function pickGbVoice(){
+    if (!window.speechSynthesis) return null;
+    var vs = speechSynthesis.getVoices() || [];
+    if (!vs.length) return null;
+    var gb = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang || ""); });
+    if (gb.length){
+      var pref = gb.filter(function(v){ return /google uk|daniel|sonia|libby|arthur|kate|serena|hazel|oliver/i.test(v.name||""); })[0];
+      return pref || gb[0];
+    }
+    var named = vs.filter(function(v){ return /(british|uk english|\bdaniel\b|\bsonia\b|\bhazel\b|\barthur\b)/i.test(v.name||""); })[0];
+    return named || null;
+  }
+  function loadGbVoice(){ gbVoice = pickGbVoice(); }
+  if (window.speechSynthesis){ loadGbVoice(); try { speechSynthesis.onvoiceschanged = loadGbVoice; } catch(e){} }
+  var speechOK = !!(window.speechSynthesis && window.SpeechSynthesisUtterance);
+  function speak(text){
+    if (!speechOK || !text) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-GB";
+      if (gbVoice) u.voice = gbVoice;
+      u.rate = 0.9; u.pitch = 1;
+      speechSynthesis.speak(u);
+    } catch(e){}
+  }
+  function currentStudyWord(){ var ws = studyWords(); if (!ws.length) return null; return ws[Math.min(study.idx, ws.length-1)]; }
+  function speakBtn(word){
+    if (!speechOK) return "";
+    return '<button data-action="speak" data-arg="'+esc(word)+'" title="발음 듣기 (영국식)" aria-label="발음 듣기" style="flex:0 0 auto;width:38px;height:38px;border-radius:999px;border:1.5px solid '+C.line+';background:#fff;color:'+C.ink+';cursor:pointer;display:grid;place-items:center;font-size:18px;line-height:1;padding:0">\uD83D\uDD0A</button>';
+  }
+
+  // ---------- style helpers ----------
+  function pbtn(bg,fg,border,big){ return "padding:"+(big?"13px 30px":"10px 18px")+";border-radius:10px;cursor:pointer;font-size:"+(big?16:14)+"px;font-weight:700;font-family:"+SANS+";background:"+bg+";color:"+fg+";border:1.5px solid "+border+""; }
+  function ghost(){ return "width:100%;padding:12px 14px;border-radius:10px;cursor:pointer;border:1.5px dashed #cfc7b4;background:#fbf8f1;color:"+C.inkSoft+";font-size:14px;font-family:"+SANS+";font-weight:600;text-align:left"; }
+  function navbtn(dis){ return "padding:9px 16px;border-radius:10px;font-size:14px;font-weight:600;font-family:"+SANS+";background:transparent;color:"+(dis?"#4a5666":C.paperOnDark)+";border:1px solid "+(dis?"#2c3848":"#384556")+";cursor:"+(dis?"default":"pointer"); }
+  function card(inner, extra){ return '<div style="background:'+C.paper+';border-radius:16px;padding:22px 22px 24px;box-shadow:0 10px 30px rgba(0,0,0,.28);border:1px solid '+C.paperEdge+';'+(extra||"")+'">'+inner+'</div>'; }
+  function stage4(st){
+    if (st==="mastered") return { label:"외웠어요", color:C.gold, dark:true };
+    if (st==="spelling") return { label:"객관식 통과", color:C.teal, dark:false };
+    if (st==="learning" || st==="ready") return { label:"학습 중", color:C.clay, dark:false };
+    return { label:"새 단어", color:C.gray, dark:false };
+  }
+  function pill(st){ var s=stage4(st); return '<span style="font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;color:'+(s.dark?C.ink:"#fff")+';background:'+s.color+'">'+s.label+'</span>'; }
+  function kbd(t){ return '<kbd style="font-family:'+SANS+';font-size:11px;font-weight:700;color:'+C.paper+';background:#3a4658;border:1px solid #4a5666;border-bottom-width:2px;border-radius:6px;padding:1px 7px;margin:0 1px;display:inline-block;line-height:1.6;vertical-align:middle">'+t+'</kbd>'; }
+
+  // ---------- views ----------
+  function renderStudy(){
+    var ws = studyWords();
+    if (ws.length === 0){
+      return card('<div style="text-align:center;padding:30px 10px"><div style="font-size:34px;margin-bottom:10px">\u2728</div><h3 style="font-family:'+SERIF+';color:'+C.ink+';margin:0 0 8px">복습할 단어가 없어요</h3><p style="color:'+C.inkSoft+';margin:0">"더 볼래요"로 표시한 단어가 여기에 모여요. 먼저 <b>학습</b> 탭에서 단어를 공부해 보세요.</p></div>');
+    }
+    if (study.idx > ws.length-1) study.idx = Math.max(0, ws.length-1);
+    var w = ws[study.idx], st = progress[w.id];
+    var accent = w.act===1?C.gold:w.act===2?C.clay:"#6f7f8e";
+    var hints = '<div style="margin-top:16px">';
+    hints += (study.step>=1
+      ? '<div style="border-left:3px solid '+C.ink+';padding-left:14px"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:'+C.inkSoft+';margin-bottom:4px">English definition</div><span style="font-size:16px;color:'+C.ink+'">'+esc(w.en)+'</span></div>'
+      : '<button data-action="reveal" data-arg="1" style="'+ghost()+'">아직 모르겠어요 — 영어 정의 보기</button>') + '</div>';
+    if (study.step>=1){
+      hints += '<div style="margin-top:12px">' + (study.step>=2
+        ? '<div style="border-left:3px solid '+C.clay+';padding-left:14px"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:'+C.inkSoft+';margin-bottom:4px">한국어 뜻</div><span style="font-size:18px;color:'+C.ink+';font-weight:600">'+esc(w.ko)+'</span></div>'
+        : '<button data-action="reveal" data-arg="2" style="'+ghost()+'">그래도 모르겠어요 — 한국어 뜻 보기</button>') + '</div>';
+    }
+    var exHtml = w.ex.map(function(s){ return '<li style="margin-bottom:10px;line-height:1.6;font-size:16px">'+renderEx(s,accent)+'</li>'; }).join("");
+    var inner = '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px"><h2 style="font-family:'+SERIF+';font-size:clamp(28px,7vw,42px);color:'+C.ink+';margin:0;line-height:1">'+esc(w.word)+'</h2>'+speakBtn(w.word)+'<span style="font-style:italic;color:'+C.inkSoft+';font-size:16px">'+esc(w.pos)+'</span><span style="margin-left:auto">'+pill(st)+'</span></div>'
+      + '<p style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:'+accent+';font-weight:700;margin:18px 0 8px">예문으로 뜻을 유추해 보세요</p>'
+      + '<ol style="margin:0;padding-left:20px;color:'+C.ink+'">'+exHtml+'</ol>'
+      + hints
+      + '<div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap"><button data-action="rate" data-arg="learning" style="'+pbtn("transparent",C.clay,C.clay)+'">더 볼래요</button><button data-action="rate" data-arg="positive" style="'+pbtn(C.teal,"#fff",C.teal)+'">외운 것 같아요 →</button></div>'
+      + '<p style="font-size:12px;color:'+C.inkSoft+';margin:12px 0 0;line-height:1.6">"외운 것 같아요" → <b style="color:'+C.teal+'">객관식퀴즈</b> → <b style="color:'+C.indigo+'">주관식퀴즈</b>까지 통과하면 <b style="color:'+C.gold+'">외웠어요</b>가 돼요.</p>';
+    return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:#8b95a3"><span>'+(mode==="review"?"복습":"학습")+' · '+(study.idx+1)+' / '+ws.length+'</span><span style="color:'+accent+';font-weight:700;letter-spacing:1px">ACT '+w.act+'</span></div>'
+      + card(inner)
+      + '<div style="display:flex;justify-content:space-between;margin-top:14px"><button data-action="nav" data-arg="prev" '+(study.idx===0?"disabled":"")+' style="'+navbtn(study.idx===0)+'">← 이전</button><button data-action="nav" data-arg="next" '+(study.idx>=ws.length-1?"disabled":"")+' style="'+navbtn(study.idx>=ws.length-1)+'">다음 →</button></div>'
+      + '<p style="text-align:center;font-size:12px;color:#7a8492;margin-top:12px;line-height:1.7">키보드: '+kbd("←")+' '+kbd("→")+' 단어 이동 · '+kbd("Space")+' 힌트 펼치기 · '+kbd("1")+' 더 볼래요 · '+kbd("2")+' 외운 것 같아요'+(speechOK?' · '+kbd("P")+' 발음 듣기':"")+'</p>';
+  }
+
+  function renderList(){
+    var head = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap"><span style="font-size:13px;color:#8b95a3">단어를 탭하면 한국어 뜻이 보여요 ('+WORDS.length+'개)</span><button data-action="listAll" data-arg="'+(listAllOn?"hide":"show")+'" style="'+pbtn("transparent",C.paperOnDark,"#384556")+'">'+(listAllOn?"모두 숨기기":"모두 보기")+'</button></div>';
+    var cards = [1,2,3].map(function(act){
+      var list = WORDS.filter(function(w){ return w.act===act; });
+      var accent = act===1?C.gold:act===2?C.clay:"#6f7f8e";
+      var rows = list.map(function(w){
+        var open = !!listRevealed[w.id];
+        var right = open ? '<span style="font-size:15px;color:'+C.ink+';font-weight:500">'+esc(w.ko)+'</span>' : '<span style="font-size:13px;color:'+C.inkSoft+';background:'+C.paperEdge+';padding:3px 12px;border-radius:999px;white-space:nowrap">뜻 보기</span>';
+        return '<button data-action="listToggle" data-arg="'+w.id+'" style="width:100%;text-align:left;display:flex;align-items:center;gap:10px;padding:11px 2px;border:none;border-bottom:1px solid '+C.paperEdge+';background:transparent;cursor:pointer;font-family:'+SANS+'"><span title="'+stage4(progress[w.id]).label+'" style="width:8px;height:8px;border-radius:999px;flex:0 0 auto;background:'+stage4(progress[w.id]).color+'"></span><span style="min-width:0"><span style="font-family:'+SERIF+';font-size:17px;color:'+C.ink+';font-weight:600">'+esc(w.word)+'</span><span style="font-style:italic;font-size:12px;color:'+C.inkSoft+';margin-left:6px">'+esc(w.pos)+'</span></span><span style="margin-left:auto;text-align:right;flex:0 1 auto;padding-left:8px">'+right+'</span></button>';
+      }).join("");
+      return card('<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px"><span style="font-family:'+SERIF+';font-size:18px;color:'+C.ink+';font-weight:700">Act '+act+'</span><span style="height:3px;width:28px;border-radius:2px;background:'+accent+'"></span><span style="margin-left:auto;font-size:12px;color:'+C.inkSoft+'">'+list.length+'개</span></div>'+rows, "margin-bottom:12px;padding:16px 16px 6px");
+    }).join("");
+    return head + cards;
+  }
+
+  function renderQuizTab(kind){
+    var wantStatus = kind==="mc" ? "ready" : "spelling";
+    var accentTab = kind==="mc" ? C.teal : C.indigo;
+    var title = kind==="mc" ? "객관식 퀴즈" : "주관식 퀴즈";
+    var pool = WORDS.filter(function(w){ return progress[w.id]===wantStatus; });
+    if (pool.length === 0){
+      var emoji = kind==="mc" ? "\uD83C\uDF9B\uFE0F" : "\u270D\uFE0F";
+      var msg = kind==="mc"
+        ? '학습 탭에서 <b style="color:'+C.teal+'">"외운 것 같아요"</b>를 누른 단어가 여기로 와요.'
+        : '<b style="color:'+C.teal+'">객관식 퀴즈</b>를 통과한 단어가 여기로 와요.';
+      return card('<div style="text-align:center;padding:30px 10px"><div style="font-size:34px;margin-bottom:10px">'+emoji+'</div><h3 style="font-family:'+SERIF+';color:'+C.ink+';margin:0 0 8px">아직 '+title+' 볼 단어가 없어요</h3><p style="color:'+C.inkSoft+';margin:0">'+msg+'</p></div>');
+    }
+    if (!quiz || quiz.tab !== kind){
+      var goalTxt = kind==="mc"
+        ? '맞히면 <b style="color:'+C.indigo+'">주관식 퀴즈</b> 단계로 올라가요. 틀리면 그대로 남아요.'
+        : '맞히면 <b style="color:'+C.gold+'">외웠어요</b>가 돼요. 틀리면 그대로 남아요.';
+      return card('<div style="text-align:center;padding:24px 10px"><h3 style="font-family:'+SERIF+';color:'+C.ink+';margin:0 0 6px;font-size:24px">'+title+' 준비 완료</h3><p style="color:'+C.inkSoft+';margin:0 0 18px;line-height:1.6">대기 중인 단어 <b style="color:'+accentTab+'">'+pool.length+'</b>개 · 최대 10문제<br>'+goalTxt+'</p><button data-action="quizStart" data-arg="'+kind+'" style="'+pbtn(C.gold,C.ink,C.gold,true)+'">'+title+' 시작</button><p style="font-size:12px;color:#9aa3ad;margin-top:14px">'+kbd("Enter")+' 키로도 시작할 수 있어요</p></div>');
+    }
+    if (quiz.i >= quiz.questions.length){
+      var total = quiz.questions.length, great = quiz.score===total;
+      return card('<div style="text-align:center;padding:24px 10px"><div style="font-size:40px;margin-bottom:8px">'+(great?"\uD83C\uDFC6":"\uD83D\uDC4F")+'</div><h3 style="font-family:'+SERIF+';color:'+C.ink+';margin:0 0 6px;font-size:26px">'+quiz.score+' / '+total+' 정답</h3><p style="color:'+C.inkSoft+';margin:0 0 20px">'+(great?"완벽해요! 모두 통과했어요.":"맞힌 단어는 다음 단계로 올라갔어요. 못 맞힌 단어는 그대로 남아 있으니 다시 도전해요.")+'</p><button data-action="quizStart" data-arg="'+kind+'" style="'+pbtn(C.gold,C.ink,C.gold,true)+'">다시 풀기</button></div>');
+    }
+    var q = quiz.questions[quiz.i], answered = quiz.answered, accent = q.kind==="fill"?C.indigo:C.teal;
+    var header = '<div style="display:flex;justify-content:space-between;font-size:13px;color:#8b95a3;margin-bottom:10px"><span>문제 '+(quiz.i+1)+' / '+quiz.questions.length+'</span><span style="color:'+C.gold+';font-weight:700">점수 '+quiz.score+'</span></div>';
+    var badge = '<div style="display:flex;align-items:center;gap:8px;margin:0 0 12px"><span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:'+accent+';padding:3px 10px;border-radius:999px">'+(q.kind==="fill"?"주관식":"객관식")+'</span><span style="font-size:12px;color:'+C.inkSoft+'">'+(q.kind==="fill"?"맞히면 외웠어요 \u2713":"맞히면 주관식 단계로")+'</span></div>';
+    var inner;
+    if (q.kind === "mc"){
+      var tag = q.type==="enToWord"?"이 뜻에 맞는 단어는?":"이 단어의 뜻은?";
+      var ptext = q.type==="enToWord"?esc(q.word.en):esc(q.word.word);
+      var opts = q.options.map(function(opt,oi){
+        var isC = opt.id===q.word.id, isP = quiz.pickedId===opt.id;
+        var bg=C.paper,bd=C.line,fg=C.ink,bbg=C.paperEdge,bfg=C.inkSoft;
+        if (answered&&isC){ bg="#e8f1e6";bd="#5a8c54";fg="#2f5a2c";bbg="#5a8c54";bfg="#fff"; }
+        else if (answered&&isP&&!isC){ bg="#f6e3df";bd=C.clay;fg="#8a3a28";bbg=C.clay;bfg="#fff"; }
+        var mark = answered&&isC?"\u2713":(answered&&isP&&!isC?"\u2715":"");
+        return '<button '+(answered?"disabled":"")+' data-action="mc" data-arg="'+opt.id+'" style="text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid '+bd+';background:'+bg+';color:'+fg+';cursor:'+(answered?"default":"pointer")+';font-size:16px;font-family:'+(q.type==="enToWord"?SERIF:SANS)+';display:flex;gap:12px;align-items:center"><span style="flex:0 0 auto;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-family:'+SANS+';font-size:13px;font-weight:700;background:'+bbg+';color:'+bfg+'">'+(oi+1)+'</span><span style="flex:1">'+(q.type==="enToWord"?esc(opt.word):esc(opt.ko))+'</span><span>'+mark+'</span></button>';
+      }).join("");
+      inner = '<p style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:'+C.clay+';font-weight:700;margin:0 0 10px">'+tag+'</p><p style="font-family:'+(q.type==="enToWord"?SANS:SERIF)+';font-size:'+(q.type==="enToWord"?18:34)+'px;color:'+C.ink+';margin:0 0 22px;line-height:1.3">'+ptext+'</p><div style="display:grid;gap:10px">'+opts+'</div><p style="text-align:center;font-size:12px;color:#9aa3ad;margin:16px 0 0;line-height:1.7">키보드: '+kbd("1")+'–'+kbd("4")+' 답 고르기'+(answered?' · '+kbd("Enter")+' 다음':"")+'</p>';
+    } else {
+      var fb = answered ? (quiz.correct?'<p style="margin:12px 0 0;font-size:15px;color:#2f5a2c">정답이에요! \u2713</p>':'<p style="margin:12px 0 0;font-size:15px;color:#8a3a28">아쉬워요. 정답: <b>'+esc(q.answer)+'</b></p>') : "";
+      var ib = answered ? (quiz.correct?"#5a8c54":C.clay) : C.line;
+      inner = '<p style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:'+C.clay+';font-weight:700;margin:0 0 10px">빈칸에 알맞은 단어를 쓰세요</p><p style="font-size:13px;color:'+C.inkSoft+';margin:0 0 8px">뜻: <b style="color:'+C.ink+'">'+esc(q.word.ko)+'</b></p><p style="font-family:'+SERIF+';font-size:19px;color:'+C.ink+';margin:0 0 18px;line-height:1.6">'+esc(q.display)+'</p><input id="fillInput" type="text" '+(answered?"disabled":"")+' placeholder="여기에 영어 단어 입력" autocapitalize="off" autocorrect="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:13px 14px;font-size:18px;font-family:'+SERIF+';color:'+C.ink+';background:'+(answered?"#f1ede3":"#fff")+';border:1.5px solid '+ib+';border-radius:12px;outline:none">'+fb+'<p style="text-align:center;font-size:12px;color:#9aa3ad;margin:16px 0 0;line-height:1.7">키보드: '+kbd("Enter")+' '+(answered?"다음":"제출")+'</p>';
+    }
+    var footer = (answered || q.kind==="fill") ? '<div style="margin-top:18px;display:flex;justify-content:flex-end;gap:10px">'+((q.kind==="fill"&&!answered)?'<button data-action="submit" style="'+pbtn(C.indigo,"#fff",C.indigo)+'">제출</button>':"")+(answered?'<button data-action="next" style="'+pbtn(C.ink,C.paper,C.ink)+'">'+(quiz.i+1>=quiz.questions.length?"결과 보기":"다음 문제 →")+'</button>':"")+'</div>' : "";
+    return header + card(badge + inner + footer);
+  }
+
+  function renderProgress(c, pct){
+    var r=52, circ=2*Math.PI*r, off=circ*(1-pct/100);
+    var allDone = c.mastered===WORDS.length;
+    var rows = [[C.gold,"외웠어요 (둘 다 통과)",c.mastered],[C.teal,"객관식 통과",c.spelling],[C.clay,"학습 중",c.learning + c.ready],[C.gray,"새 단어",c.new]];
+    var ring = '<svg width="140" height="140" viewBox="0 0 140 140" style="flex:0 0 auto"><circle cx="70" cy="70" r="'+r+'" fill="none" stroke="'+C.paperEdge+'" stroke-width="14"></circle><circle cx="70" cy="70" r="'+r+'" fill="none" stroke="'+C.gold+'" stroke-width="14" stroke-linecap="round" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 70 70)"></circle><text x="70" y="66" text-anchor="middle" font-family="'+SERIF+'" font-size="30" font-weight="700" fill="'+C.ink+'">'+pct+'%</text><text x="70" y="86" text-anchor="middle" font-family="'+SANS+'" font-size="11" fill="'+C.inkSoft+'">외운 정도</text></svg>';
+    var rowHtml = rows.map(function(rw){ return '<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid '+C.paperEdge+'"><span style="width:12px;height:12px;border-radius:4px;background:'+rw[0]+';flex:0 0 auto"></span><span style="color:'+C.ink+';font-size:15px;flex:1">'+rw[1]+'</span><span style="font-family:'+SERIF+';font-size:20px;font-weight:700;color:'+C.ink+'">'+rw[2]+'</span></div>'; }).join("");
+    var grids = [1,2,3].map(function(act){
+      var list = WORDS.filter(function(w){ return w.act===act; });
+      var dots = list.map(function(w){
+        var st = progress[w.id];
+        var b4 = st==="mastered" ? "mastered" : st==="spelling" ? "mc" : (st==="learning"||st==="ready") ? "learning" : "new";
+        var label4 = b4==="mastered" ? "외웠어요" : b4==="mc" ? "객관식 통과" : b4==="learning" ? "학습 중" : "새 단어";
+        var bg = b4==="mastered"?C.gold:b4==="mc"?C.tealSoft:b4==="learning"?C.claySoft:C.paperEdge;
+        var bd = b4==="mastered"?C.gold:b4==="mc"?C.teal:b4==="learning"?C.clay:"#d8d1c0";
+        return '<span title="'+esc(w.word)+' — '+label4+'" style="width:22px;height:22px;border-radius:6px;display:grid;place-items:center;background:'+bg+';border:1px solid '+bd+';color:'+(b4==="mastered"?C.ink:C.inkSoft)+';font-size:10px;font-weight:700">'+(b4==="mastered"?"\u2713":"")+'</span>';
+      }).join("");
+      return card('<div style="display:flex;justify-content:space-between;margin-bottom:12px"><span style="font-family:'+SERIF+';font-size:18px;color:'+C.ink+';font-weight:700">Act '+act+'</span><span style="font-size:13px;color:'+C.inkSoft+'">'+list.filter(function(w){return progress[w.id]==="mastered";}).length+' / '+list.length+' 외움</span></div><div style="display:flex;flex-wrap:wrap;gap:6px">'+dots+'</div>', "margin-bottom:12px");
+    }).join("");
+    var resetBlock = resetConfirm
+      ? '<div style="display:flex;gap:8px;align-items:center"><span style="font-size:13px;color:#8b95a3">정말 초기화할까요?</span><button data-action="resetYes" style="'+pbtn(C.clay,"#fff",C.clay)+'">네</button><button data-action="resetNo" style="'+pbtn("transparent","#8b95a3","#384556")+'">취소</button></div>'
+      : '<button data-action="resetAsk" style="'+pbtn("transparent","#8b95a3","#384556")+'">진도 초기화</button>';
+    return (allDone?'<div style="text-align:center;padding:14px;margin-bottom:16px;border-radius:12px;background:linear-gradient(90deg,'+C.gold+','+C.goldSoft+');color:'+C.ink+';font-weight:700">\uD83C\uDF89 모든 단어를 마스터했어요! 정말 대단해요.</div>':"")
+      + card('<div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">'+ring+'<div style="flex:1 1 180px;min-width:180px">'+rowHtml+'</div></div>')
+      + '<div style="margin-top:16px">'+grids+'</div>'
+      + '<div style="display:flex;gap:10px;margin-top:4px;flex-wrap:wrap"><button data-action="goLearn" style="'+pbtn(C.gold,C.ink,C.gold)+'">학습 계속하기</button>'+resetBlock+'</div>';
+  }
+
+  // ---------- main render ----------
+  var app = document.getElementById("app");
+  function render(){
+    var c = counts(), pct = Math.round(c.mastered / WORDS.length * 100);
+    var body = mode==="list" ? renderList() : mode==="mcq" ? renderQuizTab("mc") : mode==="fillq" ? renderQuizTab("fill") : mode==="progress" ? renderProgress(c,pct) : renderStudy();
+    var tabs = [["learn","학습"],["review","복습"],["mcq","객관식퀴즈"],["fillq","주관식퀴즈"],["progress","진도"],["list","리스트"]];
+    var nav = tabs.map(function(t){
+      var a = mode===t[0];
+      var cnt = t[0]==="review" ? c.learning : t[0]==="mcq" ? c.ready : t[0]==="fillq" ? c.spelling : 0;
+      var bcol = t[0]==="mcq" ? C.teal : t[0]==="fillq" ? C.indigo : C.clay;
+      var badge = cnt>0 ? '<span style="margin-left:5px;font-size:11px;padding:1px 6px;border-radius:999px;background:'+(a?"#0003":bcol)+';color:'+(a?C.ink:"#fff")+'">'+cnt+'</span>' : "";
+      return '<button data-action="tab" data-arg="'+t[0]+'" style="flex:1 1 auto;min-width:58px;padding:10px 8px;cursor:pointer;font-family:'+SANS+';font-size:13px;font-weight:600;border-radius:10px;border:1px solid '+(a?C.gold:"#384556")+';background:'+(a?C.gold:"transparent")+';color:'+(a?C.ink:C.paperOnDark)+'">'+t[1]+badge+'</button>';
+    }).join("");
+    app.innerHTML = '<div style="max-width:720px;margin:0 auto">'
+      + '<header style="margin-bottom:18px"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:'+C.gold+'">J. B. Priestley</span><span style="height:1px;flex:1;min-width:30px;background:#3a4658"></span></div><h1 style="font-family:'+SERIF+';font-weight:700;color:'+C.paper+';font-size:clamp(26px,6vw,38px);line-height:1.1;margin:6px 0 4px">An Inspector Calls</h1><p style="margin:6px 0 0;color:#9aa3ad;font-size:15px;font-family:'+SERIF+';font-style:italic;letter-spacing:.3px">An inquiry by <span style="color:'+C.gold+';font-style:normal;font-weight:600;letter-spacing:.5px">Yena</span></p></header>'
+      + '<div style="margin-bottom:18px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#8b95a3;margin-bottom:6px"><span>외운 단어 '+c.mastered+' / '+WORDS.length+'</span><span style="color:'+C.gold+';font-weight:700">'+pct+'%</span></div><div style="height:8px;border-radius:999px;background:#2c3848;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,'+C.gold+','+C.goldSoft+');transition:width .5s"></div></div></div>'
+      + '<nav style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">'+nav+'</nav>'
+      + '<div id="body">'+body+'</div>'
+      + '<footer style="margin-top:30px;padding-top:18px;border-top:1px solid #2c3848;text-align:center">'
+      +   '<p style="margin:0;font-family:'+SERIF+';font-style:italic;font-size:15px;color:#aeb6c2;letter-spacing:.3px;line-height:1.5">&ldquo;We are members of one body.&rdquo;</p>'
+      +   '<p style="margin:6px 0 0;font-family:'+SERIF+';font-style:italic;font-size:13px;color:#8b95a3">&mdash; Inspector Goole</p>'
+      +   '<p style="margin:8px 0 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b7686">An Inspector Calls · <span style="color:'+C.gold+'">Yena</span></p>'
+      + '</footer>'
+      + '</div>';
+    var fi = document.getElementById("fillInput");
+    if (fi){ fi.value = fillInput; if (!(quiz && quiz.answered)){ fi.focus(); var v=fi.value; fi.value=""; fi.value=v; } }
+  }
+
+  // ---------- actions ----------
+  function rate(action){
+    var ws = studyWords(); if (ws.length===0) return;
+    if (study.idx > ws.length-1) study.idx = Math.max(0, ws.length-1);
+    var w = ws[study.idx], cur = progress[w.id];
+    var ns = action==="learning" ? "learning" : (RANK[cur] >= RANK.ready ? cur : "ready");
+    setStatus(w.id, ns);
+    if (mode==="review"){ if (ns==="learning") study.idx = (study.idx+1 < ws.length ? study.idx+1 : 0); }
+    else { study.idx = (study.idx+1 < ws.length ? study.idx+1 : study.idx); }
+    study.step = 0; render();
+  }
+  function startQuiz(kind){
+    var wantStatus = kind==="mc" ? "ready" : "spelling";
+    var pool = WORDS.filter(function(w){ return progress[w.id]===wantStatus; });
+    if (pool.length===0) return;
+    var chosen = shuffle(pool).slice(0, Math.min(10, pool.length));
+    var questions = chosen.map(function(w){
+      if (kind==="fill"){
+        var ex = w.ex[Math.floor(Math.random()*w.ex.length)];
+        return { word:w, kind:"fill", answer:markedToken(ex), display:blankSentence(ex) };
+      }
+      var type = Math.random()<0.5 ? "enToWord" : "wordToKo";
+      var distractors = shuffle(WORDS.filter(function(x){ return x.id!==w.id; })).slice(0,3);
+      return { word:w, kind:"mc", type:type, options:shuffle([w].concat(distractors)) };
+    });
+    quiz = { tab:kind, questions:questions, i:0, answered:false, correct:null, pickedId:null, score:0 };
+    fillInput = ""; render();
+  }
+  function answerMc(optId){ if (!quiz||quiz.answered) return; var q=quiz.questions[quiz.i]; var correct=optId===q.word.id; if (correct) setStatus(q.word.id,"spelling"); quiz.answered=true; quiz.correct=correct; quiz.pickedId=optId; quiz.score+=correct?1:0; render(); }
+  function submitFill(){ if (!quiz||quiz.answered) return; var q=quiz.questions[quiz.i]; var correct = norm(fillInput)===norm(q.answer) || norm(fillInput)===norm(q.word.word); if (correct) setStatus(q.word.id,"mastered"); quiz.answered=true; quiz.correct=correct; quiz.score+=correct?1:0; render(); }
+  function goNext(){ if (!quiz) return; quiz.i++; quiz.answered=false; quiz.correct=null; quiz.pickedId=null; fillInput=""; render(); }
+
+  // ---------- events ----------
+  document.addEventListener("input", function(e){ if (e.target && e.target.id==="fillInput"){ fillInput = e.target.value; } });
+
+  document.addEventListener("click", function(e){
+    var el = e.target.closest("[data-action]"); if (!el) return;
+    var a = el.getAttribute("data-action"), arg = el.getAttribute("data-arg");
+    if (a==="tab"){ mode=arg; study={idx:0,step:0}; quiz=null; fillInput=""; listRevealed={}; listAllOn=false; resetConfirm=false; render(); }
+    else if (a==="reveal"){ study.step=parseInt(arg,10); render(); }
+    else if (a==="rate"){ rate(arg); }
+    else if (a==="nav"){ var ws=studyWords(); if (arg==="prev") study.idx=Math.max(0,study.idx-1); else study.idx=Math.min(ws.length-1,study.idx+1); study.step=0; render(); }
+    else if (a==="listToggle"){ listRevealed[arg]=!listRevealed[arg]; render(); }
+    else if (a==="listAll"){ if (arg==="show"){ WORDS.forEach(function(w){ listRevealed[w.id]=true; }); listAllOn=true; } else { listRevealed={}; listAllOn=false; } render(); }
+    else if (a==="quizStart"){ startQuiz(arg); }
+    else if (a==="mc"){ answerMc(parseInt(arg,10)); }
+    else if (a==="submit"){ submitFill(); }
+    else if (a==="next"){ goNext(); }
+    else if (a==="goLearn"){ mode="learn"; study={idx:0,step:0}; render(); }
+    else if (a==="speak"){ speak(arg); }
+    else if (a==="resetAsk"){ resetConfirm=true; render(); }
+    else if (a==="resetYes"){ WORDS.forEach(function(w){ progress[w.id]="new"; }); save(); resetConfirm=false; render(); }
+    else if (a==="resetNo"){ resetConfirm=false; render(); }
+  });
+
+  document.addEventListener("keydown", function(e){
+    var t = e.target, inInput = t && (t.tagName==="INPUT"||t.tagName==="TEXTAREA");
+    if (inInput){ if (t.id==="fillInput" && e.key==="Enter"){ e.preventDefault(); if (quiz && quiz.answered) goNext(); else submitFill(); } return; }
+    if (mode==="learn" || mode==="review"){
+      var ws = studyWords(); if (ws.length===0) return;
+      if (e.key==="ArrowRight"){ e.preventDefault(); study.idx=Math.min(ws.length-1,study.idx+1); study.step=0; render(); }
+      else if (e.key==="ArrowLeft"){ e.preventDefault(); study.idx=Math.max(0,study.idx-1); study.step=0; render(); }
+      else if (e.key===" "||e.key==="Spacebar"||e.key==="ArrowDown"){ e.preventDefault(); study.step=Math.min(2,study.step+1); render(); }
+      else if (e.key==="ArrowUp"){ e.preventDefault(); study.step=Math.max(0,study.step-1); render(); }
+      else if (e.key==="1"){ e.preventDefault(); rate("learning"); }
+      else if (e.key==="2"){ e.preventDefault(); rate("positive"); }
+      else if (e.key==="p"||e.key==="P"){ e.preventDefault(); var cw=currentStudyWord(); if (cw) speak(cw.word); }
+    } else if (mode==="mcq" || mode==="fillq"){
+      var kind = mode==="mcq" ? "mc" : "fill";
+      var wantStatus = kind==="mc" ? "ready" : "spelling";
+      var pool = WORDS.filter(function(w){ return progress[w.id]===wantStatus; });
+      if (!quiz || quiz.tab!==kind){ if (e.key==="Enter"&&pool.length>0){ e.preventDefault(); startQuiz(kind); } return; }
+      if (quiz.i>=quiz.questions.length){ if (e.key==="Enter"){ e.preventDefault(); startQuiz(kind); } return; }
+      var q = quiz.questions[quiz.i];
+      if (!quiz.answered){ if (q.kind==="mc"){ var n=parseInt(e.key,10); if (n>=1&&n<=q.options.length){ e.preventDefault(); answerMc(q.options[n-1].id); } } }
+      else if (e.key==="Enter"||e.key==="ArrowRight"||e.key===" "||e.key==="Spacebar"){ e.preventDefault(); goNext(); }
+    }
+  });
+
+  render();
+})();
+
+</script>
+</body>
+</html>
